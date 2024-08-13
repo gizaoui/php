@@ -44,7 +44,7 @@
 
    <div class="navbar">
       <a href="?p=home">Home</a>
-      <a href="?p=single">Single</a>
+      <a href="?p=article">Article</a>
                <!-- http://localhost:8000/Blog/public/Blog/public/index.php?p=single -->
    </div>
 
