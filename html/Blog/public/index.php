@@ -21,7 +21,8 @@ if (isset($_GET['p'])) {
 
 
 
-
+# --- Initialisation des objects ---
+// $db = new App\Database();
 
 
 ob_start();

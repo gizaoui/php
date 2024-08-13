@@ -9,7 +9,7 @@ class Autoloader {
    }
 
    static function autoloader($class_name) {
-      // var_dump($class_name);
-      require str_replace(__NAMESPACE__.'\\','',$class_name).'.php';
+      // print( $class_name."<br>");
+      require str_replace(__NAMESPACE__.'/','', str_replace('\\','/', $class_name)).'.php';
     }
 }
