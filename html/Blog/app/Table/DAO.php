@@ -14,14 +14,11 @@ class DAO {
     }
     
     private static function getTable() {
-        if (static::$table === null) {
-            static::$table = end ( explode ( '\\', get_called_class () ) );
-        }
+        static::$table = end ( explode ( '\\', get_called_class () ) );
         return static::$table;
     }
     
-    
     public static function find($id) {
-        return App::getDb ()->prepare ( "SELECT * FROM ". self::getTable ()." WHERE id=?", [ $id ], __CLASS__ );
+        return App::getDb ()->prepare ( "SELECT * FROM " . self::getTable () . " WHERE id=?", [ $id ], __CLASS__ );
     }
 }

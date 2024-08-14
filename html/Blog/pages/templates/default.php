@@ -1,3 +1,4 @@
+<?php use App\App; ?>
 <!DOCTYPE html>
 <html>
 
@@ -38,6 +39,7 @@ body {
 	/* Used in this example to enable scrolling */
 }
 </style>
+<title><?php echo App::getTitle ();?></title>
 </head>
 
 <body>
