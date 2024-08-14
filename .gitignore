@@ -1,3 +1,7 @@
 **/data/
 .vscode/
+.project
+.settings
+.settings
 **/test-junit/
+**/.buildpath
