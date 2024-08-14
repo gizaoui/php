@@ -2,40 +2,35 @@
 
 # php -S localhost:3000 -t /home/gizaoui/git/github/php/Blog/public
 # html/Blog/public/index.php
-
 require '../app/Autoloader.php';
 
-use \App\Autoloader;
-use \App\Config;
+use App\Autoloader;
 
-Autoloader::register();
+Autoloader::register ();
 
 // var_dump(Config::getInstance()->get("db_name"));
 
-
-if (isset($_GET['p'])) {
-   $p = $_GET['p'];
-} else {
-   $p = 'home';
+if (isset ( $_GET ['p'] )) {
+    $p = $_GET ['p'];
 }
-
-
+else {
+    $p = 'home';
+}
 
 # --- Initialisation des objects ---
 // $db = new App\Database();
 
-
-ob_start();
+ob_start ();
 
 if ($p === 'home') {
-   require '../pages/home.php';
+    require '../pages/home.php';
 }
 elseif ($p === 'article') {
-   require '../pages/article.php';
+    require '../pages/article.php';
 }
 else {
-   require '../pages/home.php';
+    require '../pages/home.php';
 }
 
-$content = ob_get_clean();
+$content = ob_get_clean ();
 require '../pages/templates/default.php';

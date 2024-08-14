@@ -43,8 +43,7 @@ body {
 <body>
 
 	<div class="navbar">
-		<a href="?p=home">Home</a> 
-		<a href="?p=article">Article</a>
+		<a href="?p=home">Home</a> <a href="?p=article">Article</a>
 	</div>
 
 	<div class="main">

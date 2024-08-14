@@ -1,7 +1,7 @@
 <h1>HOME</h1>
 
 <?php
-$db = new App\Database();
+$db = new App\Database ();
 
 // $db->query("INSERT INTO Article(titre, contenu, dat) VALUES ('Mon titre', 'Mon contenu', '" . date("Y-m-d H:i:s") . "')");
 // var_dump($db->query("SELECT * FROM Article"));
