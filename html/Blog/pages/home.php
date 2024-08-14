@@ -10,10 +10,7 @@ use App\Table\Article;
 <?php foreach (Article::getLast() as $post): ?>
 
 <h4>
-	<a href="index.php?p=article&id=<?php echo $post->id; ?>"><?php echo $post->titre; ?></a>
+	<a href="index.php?p=article&id=<?php echo $post->id; ?>"><?php echo $post->titre; ?></a>  - <?php echo $post->categorie; ?>
 </h4>
-<p>
-      <?php echo $post->contenu; ?>
-   </p>
 <hr>
 <?php endforeach; ?>
