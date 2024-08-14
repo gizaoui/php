@@ -17,9 +17,6 @@ else {
     $p = 'home';
 }
 
-# --- Initialisation des objects ---
-// $db = new App\Database();
-
 ob_start ();
 
 if ($p === 'home') {

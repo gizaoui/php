@@ -6,16 +6,15 @@ use PDO;
 use PDOException;
 
 class Database {
-    /*
-     * Param
-     * */
+    
+    /* Param. */
     private $db_name;
     private $db_user;
     private $db_pass;
     private $db_host;
     private $db_conn;
     
-    public function __construct($db_name = 'mydb', $db_user = 'postgres', $db_pass = 'postgres', $db_host = 'mypostgres') {
+    public function __construct($db_host = 'mypostgres', $db_name = 'mydb', $db_user = 'postgres', $db_pass = 'postgres') {
         unset ( $this->db_conn );
         $this->db_name = $db_name;
         $this->db_user = $db_user;

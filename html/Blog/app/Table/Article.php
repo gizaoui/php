@@ -2,6 +2,8 @@
 
 namespace App\Table;
 
+use App\App;
+
 class Article {
     
     /* Param. */
@@ -9,6 +11,10 @@ class Article {
     private $contenu;
     private $titre;
     private $dat;
+    
+    public static function getLast() {
+        return App::getDb()->query('SELECT * FROM Article', __CLASS__);
+    }
     
     public function __get($key) {
         $method = 'get' . ucfirst ( $key );
