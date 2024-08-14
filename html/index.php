@@ -45,6 +45,7 @@
    <div class="navbar">
       <a href="http://localhost:8000/phppgadmin/" target="_blank">phppgadmin</a>
       <a href="http://localhost:8000/Blog/public/index.php" target="_blank">Blog</a>
+      <a href="http://localhost:8000/Pattern/Singleton/index.php" target="_blank">Singleton</a>
    </div>
 
    <div class="main">
