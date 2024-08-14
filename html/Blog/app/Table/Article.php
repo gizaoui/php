@@ -4,8 +4,7 @@ namespace App\Table;
 
 use App\App;
 
-
-class Article extends Table {
+class Article extends DAO {
     
     /* Param. */
     protected $id;

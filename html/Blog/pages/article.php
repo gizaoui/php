@@ -1,9 +1,8 @@
 <h1>ARTICLE</h1>
 
 <?php
-use App\App;
-
-foreach ( App::getDb ()->prepare ( 'SELECT * FROM Article WHERE id=?', [ $_GET ['id'] ], 'App\Table\Article' ) as $post ) :
+use App\Table\Article;
+foreach ( Article::find ( $_GET ['id'] ) as $post ) :
     ?>
 
 <h4><?php echo $post->titre; ?></h4>
