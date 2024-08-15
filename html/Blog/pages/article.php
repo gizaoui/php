@@ -2,6 +2,7 @@
 
 <?php
 use App\Table\Article;
+
 foreach ( Article::find ( $_GET ['id'] ) as $post ) :
     ?>
 

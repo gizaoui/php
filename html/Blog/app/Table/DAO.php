@@ -5,7 +5,14 @@ namespace App\Table;
 use App\App;
 
 class DAO {
-    protected static $table;
+    protected $table;
+    
+    public function __construct() {
+        if (is_null ( $this->table )) {
+            $this->table = end ( explode ( '\\', get_class ( $this ) ) );
+            echo  '- ' . $this->table .'<br>';
+        }
+    }
     
     public function __get($key) {
         $method = 'get' . ucfirst ( $key );
@@ -14,11 +21,12 @@ class DAO {
     }
     
     private static function getTable() {
-        static::$table = end ( explode ( '\\', get_called_class () ) );
-        return static::$table;
+        echo  end ( explode ( '\\', get_called_class () ) ) .'<br>';
+        return end ( explode ( '\\', get_called_class () ) );
     }
     
     public static function find($id) {
-        return App::getDb ()->prepare ( "SELECT * FROM " . self::getTable () . " WHERE id=?", [ $id ], __CLASS__ );
+        $config = App::getInstance();
+        return $config->getDb ()->prepare ( "SELECT * FROM " . self::getTable () . " WHERE id=?", [ $id ], __CLASS__ );
     }
 }

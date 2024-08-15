@@ -4,11 +4,13 @@
 # html/Blog/public/index.php
 require '../app/Autoloader.php';
 
+use App\App;
 use App\Autoloader;
 
 Autoloader::register ();
 
-// var_dump(Config::getInstance()->get("db_name"));
+
+
 
 if (isset ( $_GET ['p'] )) {
     $p = $_GET ['p'];
