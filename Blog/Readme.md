@@ -9,7 +9,7 @@ php -S localhost:8000 -t /home/gizaoui/Phpstorm/Blog/public
 ```bash
 # décommenter dans php.ini 'extension=pdo_sqlite'
 # Linux : php -i | grep PDO
-# Windows : php.exe -i | findstr PDO
+# Windows : php.exe -i | findstr PDO  # (doit être positionné sous C:\php\php.ini)
 PDO support => enabled
 PDO drivers => mysql, pgsql, sqlite
 PDO Driver for MySQL => enabled
