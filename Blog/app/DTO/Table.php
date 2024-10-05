@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-use App\Database;
+use App\Database\FactoryDb;
 
 class Table
 {
@@ -37,8 +37,7 @@ class Table
     public static function findAll(): array
     {
         // Le paramètre static::$table est initialisé dans la classe 'mère'.
-        return Database::getDb()->query("SELECT * FROM ".static::$table, get_called_class());
+        return FactoryDb::getDb()->query("SELECT * FROM ".static::$table, get_called_class());
     }
-
 
 }

@@ -4,11 +4,12 @@
     <tr>
         <th>Titre</th>
         <th>Contenu</th>
-        <th>Date de création</th>
+        <th>Création</th>
     </tr>
     </tbody>
     <?php
-    use \App\DTO\ArticleDTO;
+
+    use App\DTO\ArticleDTO;
 
     // foreach ($db->query("SELECT id, title, content, createAt FROM Article", '\App\DTO\ArticleDTO') as $row):
     foreach (ArticleDTO::findAll() as $row):
