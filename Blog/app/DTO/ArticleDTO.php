@@ -48,4 +48,10 @@ class ArticleDTO extends Table
              __CLASS__, $post);
     }
 
+    public static function Delete(array $post)
+    {
+        return FactoryDb::getDb()->query("DELETE FROM ". self::$table ." WHERE id = :id",
+            __CLASS__, $post);
+    }
+
 }

@@ -7,6 +7,8 @@
     <link href="css/app.css" rel="stylesheet">
 </head>
 <body>
+
+<!-- ==============  Navbar  ============== -->
 <nav class="navbar navbar-light navbar-expand-sm" style="background-color: #f7e3fd;">
     <div class="container-fluid m-0">
         <a class="navbar-brand" href="index.php">Mon site</a>
@@ -36,7 +38,9 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid m-0">
+
+<!-- ==============  Routing  ============== -->
+<div class="container-fluid m-0 p-0">
     <?php
     // Chargement de la page sélectionnée via
     // le paramètre 'p' de  l'url dans la page 'index.php'

@@ -5,7 +5,7 @@ namespace App\Form;
 class Floating
 {
     protected array $data = [];
-    const FORM_FLOAT_START = "div class='form-floating mb-2'";
+    const FORM_FLOAT_START = "div class='form-floating mb-2 ps-0'";
 
     const DIV = "div";
 
@@ -15,8 +15,11 @@ class Floating
         $this->data = $data;
 
         // Permettra la mise à jour
-        if ($this->data['id']) {
-            echo "<input type='text' id='id' name='id' value='{$this->data['id']}'>";
+        if ($_GET['id']) {
+            echo "<input type='hidden' id='id' name='id' value='{$_GET['id']}'>";
+        }
+        if ($_GET['method']) {
+            echo "<input type='hidden' id='method' name='method' value='{$_GET['method']}'>";
         }
     }
 
@@ -66,6 +69,7 @@ class Floating
                 "<textarea id='{$name}' name='{$name}' style='height: 120px' class='form-control' placeholder='Leave a comment here'>{$this->getValues($name)}</textarea>" .
                 "<label for='{$name}'>{$name}</label>";
             return $this->surround_float($ctrl);
+
         } elseif ($type === 'datetime') {
 
             if ($this->data[$name]) {
@@ -83,7 +87,8 @@ class Floating
                     "<label for='{$name}_date'>{$name}</label>") .
                 $this->surround_float("<input id='{$name}_time' name='{$name}_time' value='{$hour}' type='time' placeholder='{$name}' class='form-control'>" .
                     "<label for='{$name}_time'>{$name}</label>") .
-                "</div><input type='text' id='{$name}' name='{$name}' value='{$this->getValues($name)}'>";
+                "</div>".
+                "<input type='hidden' id='{$name}' name='{$name}' value='{$this->getValues($name)}'>";
 
             return $ctrl;
         } else {
@@ -100,9 +105,14 @@ class Floating
      * @param $name : Bouton 'Submit'
      * @return string
      */
-    public function Submit($name): string
+    public function Submit(): string
     {
         return $this->surround_float("<button type='submit' class='btn btn-primary'>Envoyer</button>");
+    }
+
+    public function Cancel(string $url='index.php'): string
+    {
+        return $this->surround_float("<a class='btn btn-secondary' href='{$url}'>Annuler</a>");
     }
 
     public static function LogPost(array $post): string
@@ -111,6 +121,6 @@ class Floating
         foreach ($post as $key => $value) {
             $trace .= "<li class='list-group-item'>'$key' : '$value'</li>";
         }
-        return "<ul class='list-group list-group-flush'>" . $trace . "</ul>";
+        return "<ul class='list-group list-group-flush form-control'>" . $trace . "</ul>";
     }
 }
