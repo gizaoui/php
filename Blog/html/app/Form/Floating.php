@@ -2,24 +2,27 @@
 
 namespace App\Form;
 
+/**
+ * Elements de création d'une page web.
+ */
 class Floating
 {
-    protected array $data = [];
+    protected array $post = [];
     const FORM_FLOAT_START = "div class='form-floating mb-2 ps-0'";
 
     const DIV = "div";
 
-    public function __construct(array $data)
+    public function __construct(array $post=[], array $get=[])
     {
         // var_dump($data);
-        $this->data = $data;
+        $this->post = $post;
 
         // Permettra la mise à jour
-        if ($_GET['id']) {
-            echo "<input type='hidden' id='id' name='id' value='{$_GET['id']}'>";
+        if (!empty($get['id'])) {
+            echo "<input type='hidden' id='id' name='id' value='{$get['id']}'>";
         }
-        if ($_GET['method']) {
-            echo "<input type='hidden' id='method' name='method' value='{$_GET['method']}'>";
+        if (!empty($get['method'])) {
+            echo "<input type='hidden' id='method' name='method' value='{$get['method']}'>";
         }
     }
 
@@ -46,7 +49,7 @@ class Floating
      */
     private function getValues(string $index): string
     {
-        return self::withZero($this->data[$index] ?? '');
+        return self::withZero( $this->post[$index] ?? '');
     }
 
     /**
@@ -72,9 +75,9 @@ class Floating
 
         } elseif ($type === 'datetime') {
 
-            if ($this->data[$name]) {
-                $dte = explode(' ', $this->data[$name])[0];
-                $hour = explode(' ', $this->data[$name])[1];
+            if ($this->post[$name]) {
+                $dte = explode(' ', $this->post[$name])[0];
+                $hour = explode(' ', $this->post[$name])[1];
             } else {
                 $dte = date("Y-m-d");
                 $hour = date("H:i");
@@ -97,8 +100,6 @@ class Floating
                 "<label for='{$name}'>{$name}</label>";
             return $this->surround_float($ctrl);
         }
-
-        return '';
     }
 
     /**

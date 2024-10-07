@@ -19,24 +19,29 @@ PDO Driver for SQLite 3.x => enabled
 ```
 
 ```sql
+DROP TABLE Article;
+
+-- Les champs doivent être déclarés en minuscule.
 CREATE TABLE "Article" (
     "id" INTEGER,
     "title"	TEXT,
     "content" TEXT,
-    "createAt" DATE
+    "createdat" DATE
 );
 ```
+
 ```sql
 DELETE FROM Article;
+INSERT INTO Article( id, title, content, createdat) VALUES
+((SELECT IFNULL(Max(id)+1, 1) FROM Article), 'Premier article', 'Contenu du premier article', '2024-08-20 12:15:32');
+INSERT INTO Article( id, title, content, createdat) VALUES
+((SELECT IFNULL(Max(id)+1, 1) FROM Article), 'Second article', 'Contenu du second article', '2024-08-21 12:15:32');
+INSERT INTO Article( id, title, content, createdat) VALUES
+((SELECT IFNULL(Max(id)+1, 1) FROM Article), 'Troisième article', 'Contenu du troisième article', '2024-08-20 12:15:32');
 ```
 
 ```sql
-INSERT INTO  Article( id, title, content, createAt)
-VALUES((SELECT IFNULL(Max(id)+1, 1) FROM Article), 'Mon titre', 'Un contenu', '2007-01-01 10:00:00');
-```
-
-```sql
-SELECT id, title, content, createAt FROM Article;
+SELECT id, title, content, createdat FROM Article;
 ```
 
 ## Unit tests

@@ -63,7 +63,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydb
+      POSTGRES_DB: article
       PGDATA: /var/lib/postgresql/data
 
     volumes:

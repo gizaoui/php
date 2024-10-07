@@ -35,7 +35,7 @@ echo "alias c='cd /usr/share/nginx/html && chown -R gizaoui: simple-project && c
 echo "alias cc='php bin/console cache:clear'" >> ~/.bashrc && \
 echo "alias dr='php bin/console debug:router'" >> ~/.bashrc && \
 echo "alias h='history'" >> ~/.bashrc && \
-echo "alias mydb='PGPASSWORD='postgres' psql -h mypostgres -U postgres -d mydb'" >> ~/.bashrc && \
+echo "alias mydb='PGPASSWORD='postgres' psql -h mypostgres -U postgres -d article'" >> ~/.bashrc && \
 echo "alias mc='php bin/console make:controller '" >> ~/.bashrc && \
 echo "alias s='source ~/.bashrc'" >> ~/.bashrc && \
 echo "alias b='vim ~/.bashrc'" >> ~/.bashrc && \

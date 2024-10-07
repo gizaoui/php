@@ -2,11 +2,12 @@
 
 namespace App\Database;
 
-
 use App\Config\Config;
 use App\Database;
-use App\Config\Param;
 
+/**
+ * Création des instances de connexion aux bases de données.
+ */
 class FactoryDb
 {
     private static ?object $database = null;
@@ -26,23 +27,30 @@ class FactoryDb
             /**
              * Factory
              */
-            switch (Config::getInstance()->get('db') ?? Param::$SQLITE) {
+            switch (Config::getInstance()->get('db') ?? 'sqlite') {
                 case "sqlite":
-                    $sqlite = Config::getInstance()->get(Param::$SQLITE)['db_file'];
+                    $sqlite = Config::getInstance()->get('sqlite');
                     if (empty($sqlite)) {
                         self::message(Config::getInstance()->get('db'));
                     } else {
-                        //
-                        self::$database = new SQLite($sqlite);
+                        self::$database = new QrySQLite($sqlite['dsn']);
                     }
                     break;
                 case "postgres":
-                    // TODO: A mettre à jour
-                    self::message("postgres");
+                    $postgres = Config::getInstance()->get('postgres');
+                    if (empty($postgres)) {
+                        self::message(Config::getInstance()->get('db'));
+                    } else {
+                        self::$database = new QryPostgres($postgres['dsn'],$postgres['user'],$postgres['password']);
+                    }
                     break;
                 case "mysql":
                     // TODO: A mettre à jour
                     self::message("mysql");
+                    break;
+                case "sqlserver":
+                    // TODO: A mettre à jour
+                    self::message("sqlserver");
                     break;
                 default:
                     self::message(Config::getInstance()->get('db'));

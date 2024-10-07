@@ -20,12 +20,12 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <!-- L'emplacement est équivalent à celle de public/index.php -->
-                    <a class="nav-link <?php echo $_GET['p'] ?? 'active'; ?>"
+                    <a class="nav-link <?= empty($_GET['id']) ? 'active' : ''; ?>"
                        href="index.php">Acceuil</a>
                 </li>
                 <li class="nav-item">
                     <!-- L'emplacement est équivalent à celle de public/index.php -->
-                    <a class="nav-link <?php echo $_GET['p'] == 'article' ? 'active' : ''; ?>"
+                    <a class="nav-link <?= !empty($_GET['id']) ? 'active' : ''; ?>"
                        href="index.php?p=article">Article</a>
                 </li>
             </ul>
@@ -42,16 +42,13 @@
 <!-- ==============  Routing  ============== -->
 <div class="container-fluid m-0 p-0">
     <?php
-    // Chargement de la page sélectionnée via
-    // le paramètre 'p' de  l'url dans la page 'index.php'
-    switch ($_GET['p'] ?? "home") {
-        case "article":
-            // L'emplacement est équivalent à celle de public/index.php
-            require "../pages/article.php";
-            break;
-        default:
-            // L'emplacement est équivalent à celle de public/index.php
-            require "../pages/home.php";
+    if(empty($_GET['id'])) {
+        // Liste des articles a visualiser.
+        require "../pages/home.php";
+    }
+    else {
+        // Visualisation de l'article sélectionné.
+        require "../pages/article.php";
     }
     ?>
     <!--    <button id="myBtn" type="button" class="btn btn-primary click">Click me!</button>-->

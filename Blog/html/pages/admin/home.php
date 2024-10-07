@@ -20,8 +20,8 @@
         use App\DTO\ArticleDTO;
 
         // Suppression des paramètres du $_POST pour la requêtes de màj.
-        unset($_POST['createAt_date']);
-        unset($_POST['createAt_time']);
+        unset($_POST['createdat_date']);
+        unset($_POST['createdat_time']);
 
         // Gestion des requêtes de mise à jour.
         switch ($_POST['method'] ?? null) {
@@ -51,7 +51,7 @@
         foreach (ArticleDTO::findAll() as $row): ?>
             <tr>
                 <td><?= $row->title; ?></td>
-                <td><?= $row->createAt; ?></td>
+                <td><?= $row->createdat; ?></td>
                 <td>
                     <div class="d-flex gap-1">
                         <a class="btn btn-primary btn-sm" href="index.php?method=put&id=<?= $row->id; ?>">Editer</a>

@@ -5,25 +5,21 @@ namespace App\Database;
 use \PDO;
 use \Exception;
 
-class SQLite extends SQL
+class QrySQLite extends Qry
 {
-
-
     /**
      * Appelé par la classe FactoryDb.php à travers un Singleton.
      * @param string $db_file
      */
-    public function __construct(string $db_file)
+    public function __construct(string $dsn)
     {
         if ($this->pdo === null) {
             try {
-                $this->pdo = new PDO("sqlite:" . __DIR__ . "/" . $db_file);
-                $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-                // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
+                $this->pdo = new PDO($dsn);
                 $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 // Initilisation du construteur parent.
-                parent::__construct("sqlite:" . __DIR__ . "/" . $db_file);
+                parent::__construct($dsn);
 
                 // renvoie l'instance permettant d'atteindre
                 // la méthode héritée 'query'.
@@ -33,7 +29,7 @@ class SQLite extends SQL
                 ?>
                 <div class="alert alert-danger mt-4" role="alert">
                     <?= $e->getMessage(); ?><br>
-                    <em><?= __DIR__ . "/" . $db_file; ?></em>
+                    <em><?= $dsn; ?></em>
                 </div>
                 <?php
                 die();
@@ -43,5 +39,14 @@ class SQLite extends SQL
         }
     }
 
+    #################################################
+    #   REQUÊTE SPECIFIQUE A LA BASES DE DONNEES
+    #################################################
+    public function qryInsert(string $table, string $dto, array $attributes)
+    {
+        return FactoryDb::getDb()->query("INSERT INTO  " . $table . "( id, title, content, createdat)" .
+            " VALUES((SELECT IFNULL(Max(id)+1, 1) FROM " . $table . "), :title, :content, :createdat)",
+            $dto, $attributes);
+    }
 
 }

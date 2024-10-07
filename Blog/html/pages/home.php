@@ -3,6 +3,7 @@
 </div>
 
 <div class="container">
+    <!-- Affichage de la liste des articles  -->
     <table class="table">
         <tbody>
         <tr>
@@ -12,19 +13,19 @@
         </tr>
         </tbody>
         <?php
-
         use App\DTO\ArticleDTO;
 
-        // foreach ($db->query("SELECT id, title, content, createAt FROM Article", '\App\DTO\ArticleDTO') as $row):
+        // Boucle sur les articles retournés par la requête SQL
         foreach (ArticleDTO::findAll() as $row):
             ?>
             <tr>
                 <td><?= $row->title; ?></td>
-                <!-- alias vers la methode 'getExtrait()' -->
+                <!-- alias vers la methode 'getExtrait()' via ArticleDTO -->
                 <td><a href="<?= $row->url; ?>"
                        class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><?= $row->extrait; ?></a>
                 </td>
-                <td><?= $row->createAt; ?></td>
+                <!-- /!\ Le champs doit être déclaré en minuscule dans les bases de données -->
+                <td><?= $row->createdat; ?></td>
             </tr>
         <?php endforeach;
         ?>

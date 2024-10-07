@@ -10,11 +10,11 @@ use App\DTO\ArticleDTO;
 <div class="container">
     <form action="index.php" method="post">
         <?php
-        if ($_GET['id']) {
+        if (!empty($_GET['id'])) {
             $findById = ArticleDTO::findById($_GET['id']);
-            $form = new Floating(((array)$findById[0]));
+            $form = new Floating(((array)$findById[0]), $_GET);
         } else {
-            $form = new Floating($_POST);
+            $form = new Floating($_POST, $_GET);
         }
         ?>
         <div class="row text-right ms-1">
@@ -24,7 +24,7 @@ use App\DTO\ArticleDTO;
                 // Les paramètres des méthodes 'Input' correspondent aux indexes
                 // du tableau du associatif $_POST.
                 echo $form->Input('title');
-                echo $form->Input('createAt', 'datetime');
+                echo $form->Input('createdat', 'datetime');
                 ?>
             </div>
             <div class="col-12 col-md-8 m-0 ps-0">
@@ -43,12 +43,12 @@ use App\DTO\ArticleDTO;
 
     <script>
         window.onload = function () {
-            document.getElementById('createAt_date').addEventListener('change', e => {
-                document.getElementById('createAt').value = e.target.value + ' ' +
-                    document.getElementById('createAt_time').value
+            document.getElementById('createdat_date').addEventListener('change', e => {
+                document.getElementById('createdat').value = e.target.value + ' ' +
+                    document.getElementById('createdat_time').value
             });
-            document.getElementById('createAt_time').addEventListener('change', e => {
-                document.getElementById('createAt').value = document.getElementById('createAt_date').value + ' ' +
+            document.getElementById('createdat_time').addEventListener('change', e => {
+                document.getElementById('createdat').value = document.getElementById('createdat_date').value + ' ' +
                     e.target.value
             });
         };
@@ -56,9 +56,9 @@ use App\DTO\ArticleDTO;
 
     <script defer>
         // Exécuté en fin de chargement
-        document.getElementById('createAt').value =
-            document.getElementById('createAt_date').value + ' ' +
-            document.getElementById('createAt_time').value
+        document.getElementById('createdat').value =
+            document.getElementById('createdat_date').value + ' ' +
+            document.getElementById('createdat_time').value
     </script>
 
 

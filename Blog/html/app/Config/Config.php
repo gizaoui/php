@@ -22,8 +22,8 @@ class Config
 
     public function __construct()
     {
-        // $this->settings = require dirname(__DIR__) . '/Config/Parameter.php';
-        $this->settings = Param::db();
+        $this->settings = require dirname(__DIR__) . '/Config/Parameter.php';
+        // $this->settings = Param::db();
     }
 
     public function get(string $key)
